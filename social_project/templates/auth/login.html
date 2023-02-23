@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <p>Sign in to start your session</p>
+    </div>
+    <div class="row">
+        <form action="{% url 'users:login' %}" method="post">
+            {% csrf_token %}
+            {{ form.email }}
+            <br>
+            {{ form.password }}
+            <br>
+            <button type="submit" class="btn btn-primary btn-block">login</button>
+            <button type="reset" class="btn btn-danger btn-block">Clear</button>
+        </form>
+        <a href="{% url 'users:register' %}" class="text-center">Register a new membership</a>
+    </div>
+</div>
+</body>
+</html>

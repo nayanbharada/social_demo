@@ -1,0 +1,34 @@
+{% extends 'common/base.html' %}
+{% block content %}
+<div class="container">
+    <h3> ALL USER </h3>
+    My Total Friend : {{ request.user.user_friends_count }}
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user_obj in all_user %}
+        <tr>
+            <td>{{ user_obj.first_name}}</td>
+            <td>{{ user_obj.last_name}}</td>
+            <td>{{ user_obj.email}}</td>
+            <td>
+                <form action="{% url 'users:user_friend_add' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="friend_id" value="{{ user_obj.id }}">
+                    <button type="submit" class="btn btn-primary">ADD FRIEND</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include 'common/pegination.html' %}
+{% endblock %}
