@@ -21,6 +21,7 @@ class CreateUserForm(forms.ModelForm):
                     "class": "form-control",
                     "placeholder": "Enter first name",
                     "aria-invalid": "true",
+                    "required": "true"
                 }
             ),
             "last_name": forms.TextInput(
@@ -28,6 +29,7 @@ class CreateUserForm(forms.ModelForm):
                     "class": "form-control",
                     "placeholder": "Enter last name",
                     "aria-invalid": "true",
+                    "required": "true"
                 }
             ),
             "password": forms.PasswordInput(

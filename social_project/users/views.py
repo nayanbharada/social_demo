@@ -96,25 +96,15 @@ class UserFriendAdd(CustomActiveLoginRequiredMixin, View):
         return redirect("users:user_list")
 
 
-class FriendsPageView(DetailView):
+class FriendsPageView(CustomActiveLoginRequiredMixin, DetailView):
     model = UserMaster
     template_name = "user/friends_page.html"
     context_object_name = 'user_obj'
 
 
-
 class UserDashboard(CustomActiveLoginRequiredMixin, TemplateView):
     template_name = "dashboards/user_dashboard.html"
 
-#
-# class AdminDashboard(CustomActiveLoginRequiredMixin, TemplateView):
-#     template_name = "dashboards/admin_dashboard.html"
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(AdminDashboard, self).get_context_data()
-#         context["premises_count"] = Premises.objects.filter(premise_user=self.request.user).count()
-#         context["slot_count"] = Slot.objects.filter(premise_slot__premise_user=self.request.user).count()
-#         return context
 
 
 

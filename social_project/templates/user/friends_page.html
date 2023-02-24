@@ -1,10 +1,8 @@
-
 {% extends 'common/base.html' %}
 {% load poll_extras %}
 {% block content %}
 <div class="container">
     <h3> FRIENDS PAGE </h3>
-    {{ request.user }}
     <table class="table table-striped table-hover">
         <thead>
         <tr>
@@ -22,7 +20,12 @@
             <td>{{ user.last_name}}</td>
             <td>{{ user.email}}</td>
             <td>{{ user.user_friends_count}}</td>
-            <td>{% with request.user|mutual_friend_count:user as r1%} <a href="#" data-toggle="tooltip" title="{% for i in r1.names  %} {{ i }} {% endfor %} ">{{ r1.count }}</a>  {% endwith %}
+            <td>
+                {% with request.user|mutual_friend_count:user as r1%}
+                    <a href="#" data-toggle="tooltip" title="{% for i in r1.names  %} {{ i }} {% endfor %} ">
+                        {{ r1.count }}
+                    </a>
+                {% endwith %}
 
             </td>
         </tr>
@@ -39,5 +42,6 @@
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
+
 </script>
-    {% endblock %}
+{% endblock %}
